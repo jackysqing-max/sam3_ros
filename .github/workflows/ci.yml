@@ -1,0 +1,40 @@
+name: CI
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: pip install numpy==1.26.4 Pillow==12.1.1 -r requirements-test.txt
+      - run: python -m pytest -q
+      - run: python -m compileall -q sam3_ros launch scripts setup.py
+      - run: bash -n scripts/setup.sh docker/entrypoint.sh
+  ros-build:
+    runs-on: ubuntu-22.04
+    container: ros:humble-ros-base-jammy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build dependencies
+        run: |
+          apt-get update
+          apt-get install -y python3-venv python3-colcon-common-extensions
+      - name: Build and inspect installed launch
+        shell: bash
+        run: |
+          source /opt/ros/humble/setup.bash
+          python3 -m venv --system-site-packages /tmp/sam3-venv
+          /tmp/sam3-venv/bin/python -m pip install numpy==1.26.4 Pillow==12.1.1 -r requirements-test.txt
+          mkdir -p /tmp/sam3-ws/src
+          ln -s "$GITHUB_WORKSPACE" /tmp/sam3-ws/src/sam3_ros
+          cd /tmp/sam3-ws
+          /tmp/sam3-venv/bin/python -m colcon build --packages-select sam3_ros
+          source install/local_setup.bash
+          ros2 pkg executables sam3_ros
+          ros2 launch sam3_ros sam3.launch.py --show-args
+          /tmp/sam3-venv/bin/python -m colcon test --packages-select sam3_ros --event-handlers console_direct+
+          /tmp/sam3-venv/bin/python -m colcon test-result --verbose

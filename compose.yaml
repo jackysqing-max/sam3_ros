@@ -1,0 +1,24 @@
+services:
+  sam3:
+    build: .
+    image: sam3-ros:0.1.0
+    network_mode: host
+    ipc: host
+    init: true
+    gpus: all
+    environment:
+      ROS_DOMAIN_ID: ${ROS_DOMAIN_ID:-0}
+      RMW_IMPLEMENTATION: rmw_fastrtps_cpp
+      HF_HOME: /models/huggingface
+    volumes:
+      - sam3-hf-cache:/models/huggingface
+    command:
+      - ros2
+      - launch
+      - sam3_ros
+      - sam3.launch.py
+      - device:=cuda
+      - image_topic:=${SAM3_IMAGE_TOPIC:-/image_raw}
+      - prompt:=${SAM3_PROMPT:-glasses}
+volumes:
+  sam3-hf-cache:

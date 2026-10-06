@@ -1,0 +1,14 @@
+sam3_ros
+Copyright 2026 siqin and sam3_ros contributors
+
+ROS wrapper and confidence filtering extracted from:
+https://github.com/jackysqing-max/vla_simu_workspace
+Source commit: 07e5c1e1968104af92a0ee6deabe260ac1ccb341
+Source directory: src/sam3_ros
+The extraction and standalone deployment changes were made in October 2026.
+
+This repository contains ROS integration code under Apache-2.0.
+SAM3 model weights are not included. Meta's SAM3 model and official code have
+their own SAM License: https://github.com/facebookresearch/sam3/blob/main/LICENSE
+Hugging Face Transformers is a separate Apache-2.0 dependency.
+SAM and SAM3 are names of Meta's models. This is an independent ROS integration.

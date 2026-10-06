@@ -1,0 +1,4 @@
+# Validated with Python 3.10 and ROS 2 Humble. Torch is installed separately.
+numpy==1.26.4
+Pillow==12.1.1
+transformers==5.2.0

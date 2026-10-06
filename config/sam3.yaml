@@ -1,0 +1,20 @@
+/**:
+  ros__parameters:
+    image_topic: /image_raw
+    mask_topic: /sam3/mask
+    score_topic: /sam3/score
+    prompt_topic: /sam3/prompt
+    active_prompt_topic: /sam3/active_prompt
+    prompt: glasses
+    model_id: facebook/sam3
+    model_revision: ""
+    local_files_only: false
+    device: cpu
+    use_amp: true
+    score_th: 0.3
+    relative_score_th: 0.2
+    max_instances: 16
+    mask_th: 0.5
+    max_side: 640
+    infer_hz: 0.5
+    prompt_republish_sec: 1.0
