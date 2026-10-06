@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>sam3_ros</name>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <description>Reusable text-prompt SAM3 segmentation for ROS 2 image topics</description>
   <maintainer email="jackysqing@gmail.com">siqin</maintainer>
   <license>Apache-2.0</license>

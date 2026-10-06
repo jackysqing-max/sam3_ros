@@ -9,7 +9,7 @@ receive a binary segmentation mask and confidence score. Extracted from
 independent `ament_python` package. It runs without robot controllers, simulation,
 benchmark tooling, or an LLM.
 
-[中文说明](README_zh.md) · [Deployment and Docker](docs/deployment.md) ·
+[Quick start guide](docs/quickstart.md) · [Deployment and Docker](docs/deployment.md) ·
 [Topics, parameters, and QoS](docs/interfaces.md) · [Validation](docs/validation.md)
 
 ```mermaid

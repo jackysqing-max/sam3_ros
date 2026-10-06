@@ -52,7 +52,7 @@ This recipe targets native Linux.
 Build CUDA or CPU image:
 
 ```bash
-docker build -t sam3-ros:0.1.0 .
+docker build -t sam3-ros:0.1.1 .
 # CPU alternative:
 docker build --build-arg TORCH_INDEX_URL=https://download.pytorch.org/whl/cpu \
   -t sam3-ros:cpu .
@@ -65,7 +65,7 @@ required inside the container for this offline case:
 docker run --rm --init --gpus all --network host --ipc host \
   -e ROS_DOMAIN_ID=0 -e RMW_IMPLEMENTATION=rmw_fastrtps_cpp \
   -v "$HOME/models/sam3:/models/sam3:ro" \
-  sam3-ros:0.1.0 ros2 launch sam3_ros sam3.launch.py \
+  sam3-ros:0.1.1 ros2 launch sam3_ros sam3.launch.py \
   device:=cuda model_id:=/models/sam3 local_files_only:=true \
   image_topic:=/camera/color/image_raw prompt:="red cup"
 ```
